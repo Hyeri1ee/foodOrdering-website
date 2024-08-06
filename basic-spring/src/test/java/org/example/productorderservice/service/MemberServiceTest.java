@@ -3,6 +3,7 @@ package org.example.productorderservice.service;
 import org.example.productorderservice.domain.Member;
 import org.example.productorderservice.repository.MemoryMemberRepository;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -10,8 +11,15 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 
 class MemberServiceTest {
-  private final MemoryMemberRepository memberRepository = new MemoryMemberRepository();
-  MemberService memberService =  new MemberService(memberRepository);
+
+  MemberService memberService;
+  MemoryMemberRepository memberRepository;
+
+  @BeforeEach
+  public void beforeEach(){
+    memberRepository = new MemoryMemberRepository();
+    memberService = new MemberService(memberRepository);
+  }
 
   @AfterEach
   public void afterEach(){
