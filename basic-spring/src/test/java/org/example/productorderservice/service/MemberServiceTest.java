@@ -31,7 +31,7 @@ class MemberServiceTest {
   void 회원가입() {
     //given
     Member member = new Member();
-    member.setEmail("hello@gmail.com");
+    member.setEmail("hell2o@gmail.com");
     //when
     Long saveId = memberService.join(member);
 
