@@ -1,7 +1,6 @@
 package org.example.productorderservice.product.repository;
 
 import org.example.productorderservice.domain.Member;
-import org.example.productorderservice.repository.MemberRepository;
 import org.example.productorderservice.repository.MemoryMemberRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +19,7 @@ public class MemoryMemberRepositoryTest {
   @Test
   public void save(){
     Member member = new Member();
-    member.setName("spring");
+    member.setEmail("spring@gmail.com");
 
     repository.save(member);
 
@@ -31,14 +30,14 @@ public class MemoryMemberRepositoryTest {
   @Test
   public void findByName(){
     Member member1 =  new Member();
-    member1.setName("스프링1");
+    member1.setEmail("스프링1@gmail.com");
     repository.save(member1);
 
     Member member2 =  new Member();
-    member2.setName("스프링2");
+    member2.setEmail("스프링2@gmail.com");
     repository.save(member2);
 
-    Member result = repository.findByName("스프링1").get();
+    Member result = repository.findByEmail("스프링1@gmail.com").get();
 
     assertThat(result).isEqualTo(member1);
 
@@ -48,11 +47,11 @@ public class MemoryMemberRepositoryTest {
   @Test
   public void findAll(){
     Member member1 =  new Member();
-    member1.setName("스프링1");
+    member1.setEmail("스프링1@gmail.com");
     repository.save(member1);
 
     Member member2 =  new Member();
-    member2.setName("스프링2");
+    member2.setEmail("스프링2@gmail.com");
     repository.save(member2);
 
     List<Member> result = repository.findAll();

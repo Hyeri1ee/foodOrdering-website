@@ -1,23 +1,22 @@
 package org.example.productorderservice.domain;
 
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Table(name = "member")
+@Getter
+@Setter
 public class Member {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private String name;
+  @Column(name ="userEmail")
+  private String email;
 
-  public Long getId() {
-    return id;
-  }
+  @Column(name = "password")
+  private String password;
 
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
 }

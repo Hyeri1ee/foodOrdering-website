@@ -1,12 +1,8 @@
 package org.example.productorderservice.repository;
 
-import org.apache.catalina.Store;
 import org.example.productorderservice.domain.Member;
-import org.springframework.stereotype.Repository;
 
 import java.util.*;
-
-@Repository
 public class MemoryMemberRepository implements MemberRepository{
 
   private static Map<Long,Member> store = new HashMap<>();
@@ -25,9 +21,9 @@ public class MemoryMemberRepository implements MemberRepository{
   }
 
   @Override
-  public Optional<Member> findByName(String name) {
+  public Optional<Member> findByEmail(String name) {
     return store.values().stream()
-            .filter(member -> member.getName().equals(name))
+            .filter(member -> member.getEmail().equals(name))
             .findAny();
   }
 
