@@ -1,6 +1,7 @@
 package org.example.productorderservice;
 
 import jakarta.persistence.EntityManager;
+import org.example.productorderservice.aop.TimeTraceAop;
 import org.example.productorderservice.repository.JpaMemberRepository;
 import org.example.productorderservice.repository.MemberRepository;
 import org.example.productorderservice.repository.MemoryMemberRepository;
@@ -30,6 +31,11 @@ public class SpringConfig {
   public MemberService memberService(){
     return new MemberService(memberRepository);
   }
+
+//  @Bean
+//  public TimeTraceAop timeTraceAop(){
+//    return new TimeTraceAop();
+//  }
 
 //  @Bean
 //  public MemberRepository memberRepository(){
