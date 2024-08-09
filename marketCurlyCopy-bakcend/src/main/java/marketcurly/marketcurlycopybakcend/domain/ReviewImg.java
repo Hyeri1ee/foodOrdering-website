@@ -1,7 +1,9 @@
 package marketcurly.marketcurlycopybakcend.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "review_img")
@@ -17,4 +19,17 @@ public class ReviewImg {
   @ManyToOne
   @JoinColumn(name = "REVIEW_ID")
   private Review review;
+
+  @Getter
+  @Setter
+  public static class ReviewImgRequest{
+    private String imgUrl;
+    private Review review;
+  }
+  @Getter
+  @AllArgsConstructor
+  public static class ReviewImgResponse{
+    private String imgUrl;
+    private Review review;
+  }
 }

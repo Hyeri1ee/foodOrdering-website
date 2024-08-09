@@ -1,7 +1,9 @@
 package marketcurly.marketcurlycopybakcend.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 import marketcurly.marketcurlycopybakcend.domain.base.BaseTimeEntity;
 
 import java.util.ArrayList;
@@ -37,4 +39,20 @@ public class User extends BaseTimeEntity {
   @OneToMany(mappedBy = "user")
   private List<Review> reviewList = new ArrayList<>();
 
+  @Getter
+  @Setter
+  public static class UserRequest{
+    private String nickName;
+    private String password;
+    private String loginId;
+    private boolean isAdmin;
+    private Date birthday;
+  }
+
+  @Getter
+  @AllArgsConstructor
+  public static class UserResponse{
+    private String nickName;
+    private String loginId;
+  }
 }
