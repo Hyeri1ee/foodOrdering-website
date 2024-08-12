@@ -78,7 +78,11 @@
 
 [FK 필드 1:N 연관관계 매핑](https://velog.io/@xeropise1/JPA-%EC%96%B4%EB%85%B8%ED%85%8C%EC%9D%B4%EC%85%98-%EC%A0%95%EB%A6%AC)
 
+[jpa에 setter 사용 x](https://velog.io/@langoustine/setter-%EC%A7%80%EC%96%91-%EC%9D%B4%EC%9C%A0)
 
+[자바 코드로 스프링 빈 수동 주입](https://m42-orion.tistory.com/100)
+
+[HttpEntity response로 사용 예시](https://velog.io/@gwichanlee/Spring-HTTP-Header)
 
 
 ### ERROR

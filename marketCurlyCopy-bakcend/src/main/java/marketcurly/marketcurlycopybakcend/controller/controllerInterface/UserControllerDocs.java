@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import marketcurly.marketcurlycopybakcend.domain.User;
 import org.springframework.http.ResponseEntity;
@@ -25,10 +26,13 @@ public interface UserControllerDocs {
           @Parameter(name = "is_admin", description = "whether user is admin or not", required = true),
           @Parameter(name = "register_time", description = "registered time", required = false)
   })
-  @ApiResponse(responseCode = "200", description = "user created successfully", content = @Content(
-          schema = @Schema(implementation = User.UserResponse.class)
-
-  ))
+  @ApiResponses( value = {
+          @ApiResponse(responseCode = "200", description = "user created successfully", content = @Content(
+                  schema = @Schema(implementation = User.UserResponse.class))), //hold
+          @ApiResponse(responseCode = "500", description = "user not created successfully", content = @Content(
+                  schema = @Schema(implementation = User.UserResponse.class))
+          )
+  })
   @PostMapping("/create")
   public ResponseEntity<User.UserResponse> createUser (@RequestBody User.UserRequest request);
 
@@ -36,7 +40,7 @@ public interface UserControllerDocs {
   //2.update
   @Operation(summary = "PUT: update user", description = "update user with its values")
   @Parameters(value = {
-          @Parameter(name = "login_id", description = "user's login ID", required = true),
+          @Parameter(name = "loginId", description = "user's loginId", required = true),
           @Parameter(name = "password", description = "user's password", required = true),
           @Parameter(name = "nickname", description = "user's nickname", required = true),
           @Parameter(name = "name" , description = "user's real name", required = true),
@@ -72,5 +76,5 @@ public interface UserControllerDocs {
 
   ))
   @DeleteMapping("/delete")
-  public ResponseEntity<User.UserResponse> deleteUser(@RequestBody User.UserRequest request);
+  public ResponseEntity<User.UserResponse> deleteUser(@RequestParam String loginId);
 }
