@@ -1,6 +1,5 @@
 package marketcurly.marketcurlycopybakcend.repository.repositoryInterface;
 
-import jakarta.persistence.EntityManager;
 import marketcurly.marketcurlycopybakcend.domain.User;
 
 import java.util.List;

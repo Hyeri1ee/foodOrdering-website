@@ -2,14 +2,15 @@ package marketcurly.marketcurlycopybakcend.config;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import marketcurly.marketcurlycopybakcend.domain.Item;
+import marketcurly.marketcurlycopybakcend.repository.ItemRepository;
 import marketcurly.marketcurlycopybakcend.repository.UserRepository;
-import marketcurly.marketcurlycopybakcend.repository.repositoryInterface.ItemRepository;
+import marketcurly.marketcurlycopybakcend.repository.repositoryInterface.ItemRepositoryInterface;
+import marketcurly.marketcurlycopybakcend.repository.ShoppingBagRepository;
+import marketcurly.marketcurlycopybakcend.repository.repositoryInterface.ShoppingBagRepositoryInterface;
 import marketcurly.marketcurlycopybakcend.repository.repositoryInterface.UserRepositoryInterface;
-import marketcurly.marketcurlycopybakcend.service.ItemServiceImpl;
+import marketcurly.marketcurlycopybakcend.service.ItemService;
+import marketcurly.marketcurlycopybakcend.service.ShoppingBagService;
 import marketcurly.marketcurlycopybakcend.service.UserService;
-import marketcurly.marketcurlycopybakcend.service.serviceInterface.ItemService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -33,5 +34,16 @@ public class SpringConfig {
     return new UserRepository(em);
   }
 
+  @Bean
+  public ItemService itemService(){return new ItemService(ItemRepositoryInterface());}
+
+  @Bean
+  public ItemRepositoryInterface ItemRepositoryInterface(){return new ItemRepository(em);}
+
+  @Bean
+  public ShoppingBagService shoppingBagService(){return new ShoppingBagService(ShoppingBagRepositoryInterface());}
+
+  @Bean
+  public ShoppingBagRepositoryInterface ShoppingBagRepositoryInterface(){return new ShoppingBagRepository(em);}
 
 }

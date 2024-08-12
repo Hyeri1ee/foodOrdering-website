@@ -47,6 +47,29 @@ public class Item {
     this.is_new = is_new;
   }
 
+  public void update(Item.ItemRequest request){
+
+    if (request.getCategory() != null){
+      this.category = request.getCategory();
+    }
+    if (request.getDescription()!= null){
+      this.description = request.getDescription();
+    }
+    if (request.getDetail() != null){
+      this.detail = request.getDetail();
+    }
+    if (request.is_new() != this.is_new){
+      this.is_new = request.is_new();
+    }
+    if (request.getPrice() != this.price){
+      this.price = request.getPrice();
+    }
+    if (request.getStock() != this.price)
+    {
+      this.stock = request.getStock();
+    }
+  }
+
 
   @Getter
   @Setter

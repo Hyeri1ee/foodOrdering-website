@@ -2,7 +2,6 @@ package marketcurly.marketcurlycopybakcend.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
-import jakarta.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
 import marketcurly.marketcurlycopybakcend.domain.User;
 import marketcurly.marketcurlycopybakcend.repository.repositoryInterface.UserRepositoryInterface;

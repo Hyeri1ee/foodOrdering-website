@@ -1,22 +1,18 @@
 package marketcurly.marketcurlycopybakcend.service;
 
-import lombok.RequiredArgsConstructor;
 import marketcurly.marketcurlycopybakcend.domain.Item;
-import marketcurly.marketcurlycopybakcend.repository.repositoryInterface.ItemRepository;
-import marketcurly.marketcurlycopybakcend.repository.repositoryInterface.ShoppingBagRepository;
-import marketcurly.marketcurlycopybakcend.service.serviceInterface.ItemService;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import marketcurly.marketcurlycopybakcend.domain.User;
+import marketcurly.marketcurlycopybakcend.repository.repositoryInterface.ItemRepositoryInterface;
 
 import java.util.Optional;
 
-@Service
-@RequiredArgsConstructor
-@Transactional
-public class ItemServiceImpl implements ItemService {
-  private final ItemRepository itemRepository;
+public class ItemService {
+  private final ItemRepositoryInterface itemRepository;
 
-  @Override
+  public ItemService(ItemRepositoryInterface itemRepository) {
+    this.itemRepository = itemRepository;
+  }
+
   public void save(Item.ItemRequest request) {
     validateDuplicate(request);
     itemRepository.save(request.toEntity());
@@ -29,13 +25,11 @@ public class ItemServiceImpl implements ItemService {
             });
   }
 
-  @Override
   public Optional<Item.ItemResponse> getItem(String name) {
     return Optional.ofNullable(itemRepository.findByName(name))
             .map(Item.ItemResponse::new);
   }
 
-  @Override
   public void deleteItem(String name) {
     Optional<Item.ItemResponse> found = Optional.ofNullable(itemRepository.findByName(name))
             .map(Item.ItemResponse::new);
@@ -43,5 +37,12 @@ public class ItemServiceImpl implements ItemService {
       itemRepository.delete(found);
     else
       throw new IllegalStateException("아이템이 존재하지 않습니다.");
+  }
+
+  public Item updateBasedOnRequest(Optional<Item.ItemResponse> itemResponse, Item.ItemRequest request) {
+    Item item = itemRepository.findByName(itemResponse.get().getItemName());
+
+    item.update(request);
+    return itemRepository.save(item);
   }
 }
