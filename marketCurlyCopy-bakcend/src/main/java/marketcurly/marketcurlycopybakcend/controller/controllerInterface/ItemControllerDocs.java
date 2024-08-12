@@ -30,7 +30,7 @@ public interface ItemControllerDocs {
           schema = @Schema(implementation = Item.ItemResponse.class )
   ))
   @PostMapping("/create")
-  public ResponseEntity<Item.ItemResponse> createItem (@RequestBody Item.ItemReqeust request);
+  public ResponseEntity<Item.ItemResponse> createItem (@RequestBody Item.ItemRequest request);
 
   //2.update
   @Operation(summary="PUT: update item", description = "update item with its values")
@@ -47,7 +47,7 @@ public interface ItemControllerDocs {
           schema = @Schema(implementation = Item.ItemResponse.class )
   ))
   @PutMapping("/update")
-  public ResponseEntity<Item.ItemResponse> updateItem (@RequestBody Item.ItemReqeust request);
+  public ResponseEntity<Item.ItemResponse> updateItem (@RequestBody Item.ItemRequest request);
 
   //3.read
   @Operation(summary="GET: get item info", description = "get item info with its values")
@@ -58,7 +58,7 @@ public interface ItemControllerDocs {
           schema = @Schema(implementation = Item.ItemResponse.class )
   ))
   @GetMapping("/getinfo")
-  public ResponseEntity<Item.ItemResponse> getinfoItem (@RequestParam Long itemId);
+  public ResponseEntity<Item.ItemResponse> getinfoItem (@RequestParam String itemName);
 
   //4.delete
   @Operation(summary = "DELETE: delete item", description = "delete item with its values")
@@ -70,5 +70,5 @@ public interface ItemControllerDocs {
 
   ))
   @DeleteMapping("/delete")
-  public ResponseEntity<Item.ItemResponse> deleteItem (@RequestParam Long itemId);
+  public ResponseEntity<Item.ItemResponse> deleteItem (@RequestParam String name);
 }

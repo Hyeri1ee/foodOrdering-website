@@ -1,9 +1,7 @@
 package marketcurly.marketcurlycopybakcend.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,6 +10,7 @@ import java.util.List;
 @Entity
 @Getter
 @Table(name = "shoppingBag")
+@NoArgsConstructor
 public class ShoppingBag {
 
   @Id
@@ -22,10 +21,28 @@ public class ShoppingBag {
   @OneToMany(mappedBy = "shoppingBag")
   private List<Item> itemList= new ArrayList<>();
 
+  @OneToOne(mappedBy = "shoppingBag")
+  private User user;
+
+  @Builder
+  public ShoppingBag(List<Item> itemList, User user){
+    this.itemList = itemList;
+    this.user = user;
+  }
+
+
   @Getter
   @Setter
   public static class shoppingbagRequest{
     private List<Item> itemList;
+    private User user;
+
+    public ShoppingBag toEntity(){
+      return ShoppingBag.builder()
+              .user(this.user)
+              .itemList(this.itemList)
+              .build();
+    }
   }
 
   @Getter

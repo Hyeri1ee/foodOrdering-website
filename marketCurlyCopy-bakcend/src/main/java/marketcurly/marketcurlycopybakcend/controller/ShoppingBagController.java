@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/shoppingBag")
 public class ShoppingBagController implements ShoppingBagControllerDocs {
+
   @Override
   public ResponseEntity<ShoppingBag.shoppingbagResponse> createShoppingbag(String loginId) {
+
     return null;
   }
 

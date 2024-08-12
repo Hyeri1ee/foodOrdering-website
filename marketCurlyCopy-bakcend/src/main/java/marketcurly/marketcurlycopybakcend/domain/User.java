@@ -46,6 +46,9 @@ public class User extends BaseTimeEntity {
   @OneToMany(mappedBy = "user")
   private List<Review> reviewList = new ArrayList<>();
 
+  @OneToOne
+  @JoinColumn(name = "SHOPPINGBAG_ID")
+  private ShoppingBag shoppingBag;
   //update method
   public void update(UserRequest request){
     if (request.getName() != null){
