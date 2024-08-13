@@ -14,6 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "user")
 @Getter
+@Setter
 @NoArgsConstructor
 public class User extends BaseTimeEntity {
   @Id

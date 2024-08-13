@@ -49,5 +49,6 @@ public class ShoppingBag {
   @AllArgsConstructor
   public static class shoppingbagResponse{
     private List<Item> itemList;
+    private User user;
   }
 }

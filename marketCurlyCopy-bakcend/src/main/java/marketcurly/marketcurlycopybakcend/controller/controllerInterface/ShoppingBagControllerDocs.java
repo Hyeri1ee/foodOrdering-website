@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import marketcurly.marketcurlycopybakcend.domain.Item;
 import marketcurly.marketcurlycopybakcend.domain.ShoppingBag;
 import marketcurly.marketcurlycopybakcend.domain.User;
 import org.springframework.http.ResponseEntity;
@@ -32,13 +33,15 @@ public interface ShoppingBagControllerDocs {
   @Operation(summary = "PUT: update shoppingbag", description = "update shoppingbag with its values")
   @Parameters(value = {
           @Parameter(name = "itemList", description = "itemList in shoppingbag", required = true),
+          @Parameter(name = "item" , description = "adding item", required = true)
   })
   @ApiResponse(responseCode = "200", description = "shoppingbag updated successfully", content = @Content(
           schema = @Schema(implementation = ShoppingBag.shoppingbagResponse.class)
 
   ))
   @PutMapping("/update")
-  public ResponseEntity<ShoppingBag.shoppingbagResponse> updateShoppingbag (@RequestBody ShoppingBag.shoppingbagRequest request);
+  public ResponseEntity<ShoppingBag.shoppingbagResponse> updateShoppingbag (@RequestBody ShoppingBag.shoppingbagRequest request, @RequestParam Item item);
+
 
 
   //3.read

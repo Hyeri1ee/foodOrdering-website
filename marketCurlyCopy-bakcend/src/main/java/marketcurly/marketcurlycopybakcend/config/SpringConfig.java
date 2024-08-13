@@ -41,7 +41,7 @@ public class SpringConfig {
   public ItemRepositoryInterface ItemRepositoryInterface(){return new ItemRepository(em);}
 
   @Bean
-  public ShoppingBagService shoppingBagService(){return new ShoppingBagService(ShoppingBagRepositoryInterface());}
+  public ShoppingBagService shoppingBagService(){return new ShoppingBagService(ShoppingBagRepositoryInterface(),UserRepositoryInterface());}
 
   @Bean
   public ShoppingBagRepositoryInterface ShoppingBagRepositoryInterface(){return new ShoppingBagRepository(em);}
